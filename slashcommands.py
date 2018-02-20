@@ -100,15 +100,26 @@ def say():
         command = request.form.get('command', None)
         text = request.form.get('text', None)
         channel = request.form.get('channel_id', None)
+        user_id = request.form.get('user_id', None)
 
         if not token:
             abort(400)
-
-        slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))#needs slack bot token generated for your bot
-        hackerbot_id = slack_client.api_call("auth.test")["user_id"]
-        slack_client.api_call(
-            "chat.postMessage",
-            channel=channel,
-            text=text
-        )
-        return 'done'
+        with urllib.request.urlopen("https://hackprincetonhs.github.io/hackPHS-2018/admins.json") as url:
+            data = json.loads(url.read().decode())
+            organizers = "Organizers: \n"
+            isAdmin = False
+            for i in data["admins"]:
+                if i['id'] = user_id:
+                    isAdmin = True
+                    break
+            if isAdmin:
+                slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))#needs slack bot token generated for your bot
+                hackerbot_id = slack_client.api_call("auth.test")["user_id"]
+                slack_client.api_call(
+                    "chat.postMessage",
+                    channel=channel,
+                    text=text
+                )
+                return 'done'
+            else:
+                return 'Sorry :(, only admins can have hackerbot talk for them'
