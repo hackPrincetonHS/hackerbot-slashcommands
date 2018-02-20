@@ -62,7 +62,7 @@ def organizers():
     with urllib.request.urlopen("https://hackprincetonhs.github.io/hackPHS-2018/admins.json") as url:
         data = json.loads(url.read().decode())
         organizers = "Organizers: \n"
-        for i in data["events"]:
+        for i in data["admins"]:
             organizers += i["name"]
             # schedule += ": "
             # schedule += i["title"]
