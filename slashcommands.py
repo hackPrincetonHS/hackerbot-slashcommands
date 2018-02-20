@@ -122,4 +122,4 @@ def say():
                 )
                 return 'done'
             else:
-                return 'Sorry :(, only admins can have hackerbot talk for them'
+                return 'Sorry 😞, only admins can have hackerbot talk for them'
