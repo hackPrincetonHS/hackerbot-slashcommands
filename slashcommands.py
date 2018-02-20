@@ -99,7 +99,7 @@ def say():
         token = request.form.get('token', None)  # TODO: validate the token
         command = request.form.get('command', None)
         text = request.form.get('text', None)
-        channel = request.form.get('channel', None)
+        channel = request.form.get('channel_id', None)
 
         if not token:
             abort(400)
