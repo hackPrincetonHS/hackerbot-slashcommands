@@ -1,12 +1,14 @@
-# import your app object
 from flask import Flask, request, jsonify, abort
 import urllib.request, json
+from slackclient import SlackClient
+
 
 app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Welcome to hackerbot! I run the slash commands'
 
+##Grabs json hosted on github pages, and just puts it into a readable string
 @app.route('/schedule', methods=['POST'])
 def schedule():
     """Parse the command parameters, validate them, and respond.
@@ -59,6 +61,7 @@ def organizers():
     if not token:  # or some other failure condition
         abort(400)
 
+    #Grabs json hosted on github pages, and just puts it into a readable string
     with urllib.request.urlopen("https://hackprincetonhs.github.io/hackPHS-2018/admins.json") as url:
         data = json.loads(url.read().decode())
         organizers = "Organizers: \n"
@@ -69,3 +72,15 @@ def organizers():
             organizers += "\n"
         print(organizers)
         return organizers
+@app.route('/mentor', methods=['POST'])
+def mentor():
+    token = request.form.get('token', None)  # TODO: validate the token
+    command = request.form.get('command', None)
+    text = request.form.get('text', None)
+
+    if not token:
+        abort(400)
+
+
+
+    return 'Sent your message, ' + text + ' to the mentors'    
