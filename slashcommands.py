@@ -72,6 +72,7 @@ def organizers():
             organizers += "\n"
         print(organizers)
         return organizers
+
 @app.route('/mentor', methods=['POST'])
 def mentor():
     token = request.form.get('token', None)  # TODO: validate the token
@@ -92,3 +93,21 @@ def mentor():
 
 
     return 'Sent your message, ' + text + ', to the mentors'
+
+@app.route('/say', methods=['POST'])
+def say():
+        token = request.form.get('token', None)  # TODO: validate the token
+        command = request.form.get('command', None)
+        text = request.form.get('text', None)
+        channel = request.form.get('channel', None)
+
+        if not token:
+            abort(400)
+
+        slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))#needs slack bot token generated for your bot
+        hackerbot_id = slack_client.api_call("auth.test")["user_id"]
+        slack_client.api_call(
+            "chat.postMessage",
+            channel=channel,
+            text=text
+        )
