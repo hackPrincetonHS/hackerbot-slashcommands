@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, abort
 import urllib.request, json
 from slackclient import SlackClient
-
+import os
 
 app = Flask(__name__)
 @app.route('/')
@@ -77,10 +77,18 @@ def mentor():
     token = request.form.get('token', None)  # TODO: validate the token
     command = request.form.get('command', None)
     text = request.form.get('text', None)
+    user_id = request.form.get('user_id', None)
 
     if not token:
         abort(400)
 
+    slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))#needs slack bot token generated for your bot
+    hackerbot_id = slack_client.api_call("auth.test")["user_id"]
+    slack_client.api_call(
+        "chat.postMessage",
+        channel='G97J8D6GM',
+        text="<@{}>".format(user_id) + " needs help with \"" + text + "\""
+    )
 
 
-    return 'Sent your message, ' + text + ' to the mentors'    
+    return 'Sent your message, ' + text + ', to the mentors'
