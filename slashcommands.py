@@ -109,7 +109,7 @@ def say():
             organizers = "Organizers: \n"
             isAdmin = False
             for i in data["admins"]:
-                if i['id'] = user_id:
+                if i['id'] == user_id:
                     isAdmin = True
                     break
             if isAdmin:
