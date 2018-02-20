@@ -64,8 +64,8 @@ def organizers():
         organizers = "Organizers: \n"
         for i in data["admins"]:
             organizers += i["name"]
-            # schedule += ": "
-            # schedule += i["title"]
+            schedule += ": "
+            schedule += i["title"]
             organizers += "\n"
         print(organizers)
         return organizers
