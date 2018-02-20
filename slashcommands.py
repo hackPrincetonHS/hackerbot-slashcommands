@@ -31,20 +31,20 @@ def schedule():
         print(schedule)
         return schedule
 
-# @app.route('/submit', methods=['POST'])
-# def submit():
-#     """Parse the command parameters, validate them, and respond.
-#     Note: This URL must support HTTPS and serve a valid SSL certificate.
-#     """
-#     # Parse the parameters you need
-#     token = request.form.get('token', None)  # TODO: validate the token
-#     command = request.form.get('command', None)
-#     text = request.form.get('text', None)
-#     # Validate the request parameters
-#     if not token:  # or some other failure condition
-#         abort(400)
-#
-#     return 'To submit your hack go to our devpost page, go.hackPHS.tech/submit'
+@app.route('/submit', methods=['POST'])
+def submit():
+    """Parse the command parameters, validate them, and respond.
+    Note: This URL must support HTTPS and serve a valid SSL certificate.
+    """
+    # Parse the parameters you need
+    token = request.form.get('token', None)  # TODO: validate the token
+    command = request.form.get('command', None)
+    text = request.form.get('text', None)
+    # Validate the request parameters
+    if not token:  # or some other failure condition
+        abort(400)
+
+    return 'To submit your hack go to our devpost page, go.hackPHS.tech/submit'
 #
 # @app.route('/organizers', methods=['POST'])
 # def organizers():
