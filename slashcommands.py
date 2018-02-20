@@ -3,6 +3,10 @@ import urllib.request, json
 from slackclient import SlackClient
 import os
 
+'''
+Built by Lincoln Roth
+Project started on February 18, 2018
+'''
 app = Flask(__name__)
 @app.route('/')
 def hello_world():
