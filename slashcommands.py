@@ -111,3 +111,4 @@ def say():
             channel=channel,
             text=text
         )
+        return 'done'
