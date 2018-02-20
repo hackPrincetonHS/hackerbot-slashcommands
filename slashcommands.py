@@ -50,7 +50,7 @@ def submit():
     if not token:  # or some other failure condition
         abort(400)
 
-    return 'To submit your hack go to our devpost page, <http://go.hackPHS.tech/submit>'
+    return 'To submit your hack go to our devpost page, <http://go.hackPHS.tech/submit>.'
 
 @app.route('/organizers', methods=['POST'])
 def organizers():
