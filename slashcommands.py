@@ -124,6 +124,6 @@ def say():
                     channel=channel,
                     text=text
                 )
-                return 'done'
+                return 'message sent'
             else:
                 return 'Sorry 😞, only admins can have hackerbot talk for them'
